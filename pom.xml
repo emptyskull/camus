@@ -209,11 +209,11 @@
 	</build>
 
   <distributionManagement>
-    <repository>
+    <!--<repository>
       <id>Vpon Repo</id>
       <name>Vpon Repo-releases</name>
       <url>http://192.168.101.106:8081/artifactory/libs-release-local</url>
-    </repository>
+    </repository>-->
     <snapshotRepository>
       <id>Vpon Repo</id>
       <name>Vpon Repo-snapshots</name>
