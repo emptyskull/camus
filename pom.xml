@@ -205,18 +205,59 @@
 					</execution>
 				</executions>
 			</plugin>
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.1</version>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>deploy-kafka</id>
+            <phase>deploy</phase>
+            <goals>
+              <goal>deploy-file</goal>
+            </goals>
+            <configuration>
+              <repositoryId>${project.distributionManagement.snapshotRepository.id}</repositoryId>
+              <url>${project.distributionManagement.snapshotRepository.url}</url>
+              <groupId>kafka</groupId>
+              <artifactId>kafka</artifactId>
+              <version>0.8-SNAPSHOT</version>
+              <packaging>jar</packaging>
+							<file>${basedir}/lib/kafka-0.8-SNAPSHOT.jar</file>
+							<pomFile>${basedir}/lib/kafka-0.8-SNAPSHOT.xml</pomFile>
+            </configuration>
+          </execution>
+					<execution>
+						<id>deploy-avro-repo-client</id>
+            <phase>deploy</phase>
+						<goals>
+							<goal>deploy-file</goal>
+						</goals>
+						<configuration>
+              <repositoryId>${project.distributionManagement.snapshotRepository.id}</repositoryId>
+              <url>${project.distributionManagement.snapshotRepository.url}</url>
+							<groupId>org.apache.avro</groupId>
+							<artifactId>avro-repo-bundle</artifactId>
+							<version>1.7.4-SNAPSHOT</version>
+							<packaging>jar</packaging>
+							<file>${basedir}/lib/avro-repo-bundle-1.7.4-SNAPSHOT-withdeps.jar</file>
+							<pomFile>${basedir}/lib/avro-repo-bundle-1.7.4-SNAPSHOT-withdeps.xml</pomFile>
+						</configuration>
+					</execution>
+        </executions>
+      </plugin>
 		</plugins>
 	</build>
 
   <distributionManagement>
-    <!--<repository>
-      <id>Vpon Repo</id>
-      <name>Vpon Repo-releases</name>
+    <repository>
+      <id>vpon-releases</id>
+      <name>Vpon Repo Releases</name>
       <url>http://192.168.101.106:8081/artifactory/libs-release-local</url>
-    </repository>-->
+    </repository>
     <snapshotRepository>
-      <id>Vpon Repo</id>
-      <name>Vpon Repo-snapshots</name>
+      <id>vpon-snapshots</id>
+      <name>Vpon Repo Snapshots</name>
       <url>http://192.168.101.106:8081/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
   </distributionManagement>
